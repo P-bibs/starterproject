@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import { StaticTextNodeStore } from "../../stores/StaticTextNodeStore";
 import "./NodeView.scss";
 import { TopBar } from "./TopBar";
+import { ResizeCorner } from "./ResizeCorner";
 import React = require("react");
 
 interface IProps {
@@ -14,7 +15,7 @@ export class TextNodeView extends React.Component<IProps> {
     render() {
         let store = this.props.store;
         return (
-            <div className="node text-node" style={{ transform: store.Transform }}>
+            <div className="node text-node" style={{ transform: store.Transform, width: store.Width, height: store.Height }}>
                 <TopBar store={store} />
                 <div className="scroll-box">
                     <div className="content">
@@ -22,6 +23,7 @@ export class TextNodeView extends React.Component<IProps> {
                         <p className="paragraph">{store.Text}</p>
                     </div>
                 </div>
+                <ResizeCorner store={store} />
             </div>
         );
     }

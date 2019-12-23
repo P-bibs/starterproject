@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import { VideoNodeStore } from "../../stores/VideoNodeStore";
 import "./NodeView.scss";
 import { TopBar } from "./TopBar";
+import { ResizeCorner } from "./ResizeCorner";
 import "./VideoNodeView.scss";
 import React = require("react");
 
@@ -15,7 +16,7 @@ export class VideoNodeView extends React.Component<IProps> {
     render() {
         let store = this.props.store;
         return (
-            <div className="node text-node" style={{ transform: store.Transform }}>
+            <div className="node text-node" style={{ transform: store.Transform, width: store.Width, height: store.Height }}>
                 <TopBar store={store} />
                 <div className="scroll-box">
                     <div className="content">
@@ -23,6 +24,7 @@ export class VideoNodeView extends React.Component<IProps> {
                         <video src={store.Url} controls />
                     </div>
                 </div>
+                <ResizeCorner store={store} />
             </div>
         );
     }

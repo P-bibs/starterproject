@@ -1,12 +1,8 @@
 .node {
     position: absolute;
     background: #cdcdcd;
-
-    width: 300px;
-    height: 300px;
     overflow: hidden;
 
-        
     &.minimized {
         width: 30px;
         height: 30px;
@@ -15,7 +11,7 @@
     .top {
         background: #232323;
         height: 20px;
-        cursor: pointer;
+        cursor: move;
     }
 
     .content {
@@ -27,7 +23,20 @@
 
     .scroll-box {
         overflow-y: scroll;
-        height: calc(100% - 20px);
+        height: calc(100% - 40px);
+    }
+
+    .corner {
+        margin-right: 0px;
+        margin-left: calc(100% - 20px);
+
+        // CSS hack for bottom-right triangle
+        width: 0;
+        height: 0;
+        border-bottom: 20px solid black;
+        border-left: 20px solid transparent;
+
+        cursor: nwse-resize;
     }
 }
 
