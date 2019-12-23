@@ -1,9 +1,11 @@
 import { observer } from "mobx-react";
 import { NodeCollectionStore } from "../../stores/NodeCollectionStore";
 import { StaticTextNodeStore } from "../../stores/StaticTextNodeStore";
+import { WebsiteNodeStore } from "../../stores/WebsiteNodeStore";
 import { VideoNodeStore } from "../../stores/VideoNodeStore";
 import { TextNodeView } from "../nodes/TextNodeView";
 import { VideoNodeView } from "../nodes/VideoNodeView";
+import { WebsiteNodeView } from "../nodes/WebsiteNodeView";
 import "./FreeFormCanvas.scss";
 import React = require("react");
 
@@ -22,6 +24,8 @@ export class NodeContainer extends React.Component<IProps> {
                         return (<TextNodeView key={nodeStore.Id} store={nodeStore as StaticTextNodeStore} />)
                     } else if (nodeStore instanceof VideoNodeStore) {
                         return (<VideoNodeView key={nodeStore.Id} store={nodeStore as VideoNodeStore} />)
+                    } else if (nodeStore instanceof WebsiteNodeStore) {
+                        return (<WebsiteNodeView key={nodeStore.Id} store={nodeStore as WebsiteNodeStore} />)
                     }
                 })}
             </div>

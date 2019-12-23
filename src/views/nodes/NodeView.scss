@@ -15,14 +15,18 @@
     }
 
     .content {
-        padding: 20px 20px;
+        padding: 0px 20px 0px 20px;
         height: auto;
         box-sizing: border-box;
-
     }
 
     .scroll-box {
         overflow-y: scroll;
+        height: calc(100% - 40px);
+    }
+
+    .no-scroll-box {
+        overflow-y: hidden;
         height: calc(100% - 40px);
     }
 
