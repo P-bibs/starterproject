@@ -36,8 +36,10 @@ export class ResizeCorner extends React.Component<IProps> {
         if (!this._isPointerDown) {
             return;
         }
-        this.props.store.Width += e.movementX;
-        this.props.store.Height += e.movementY;
+        // Prevent nodes from being resized too small
+        this.props.store.Width = Math.max(this.props.store.Width + e.movementX, 40);
+        this.props.store.Height = Math.max(this.props.store.Height + e.movementY, 40);
+
     }
 
     render() {
