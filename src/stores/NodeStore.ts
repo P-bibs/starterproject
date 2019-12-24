@@ -21,4 +21,7 @@ export class NodeStore {
     public get Transform(): string {
         return "translate(" + this.X + "px, " + this.Y + "px)";
     }
+
+    //This function is created when the store is added to a collection
+    public Destroy(): void {}
 }

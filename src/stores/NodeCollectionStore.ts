@@ -16,6 +16,14 @@ export class NodeCollectionStore extends NodeStore {
 
     @action
     public AddNodes(stores: NodeStore[]): void {
-        stores.forEach(store => this.Nodes.push(store));
+        stores.forEach((store) => {
+            store.Destroy = (): void => this.RemoveNode(store)
+            this.Nodes.push(store)
+        });
+    }
+
+    @action
+    public RemoveNode(storeToRemove: NodeStore): void {
+        this.Nodes = this.Nodes.filter((store) => store != storeToRemove)
     }
 }
