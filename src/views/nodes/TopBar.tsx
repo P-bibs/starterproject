@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import { NodeStore } from "../../stores/NodeStore";
 import "./NodeView.scss";
 import React = require("react");
+import { computed } from "mobx";
 
 interface IProps {
     store: NodeStore;
@@ -42,7 +43,7 @@ export class TopBar extends React.Component<IProps> {
 
     render() {
         return <div className="top" onPointerDown={this.onPointerDown}>
-            <i className="material-icons top-btn" onClick={this.props.store.Link}>link</i>
+            <i className={ "material-icons top-btn" + (this.props.store.IsCurrentlyLinking ? " highlight" : "" )} onClick={this.props.store.Link}>link</i>
             <i className="material-icons top-btn" onClick={this.props.store.Destroy}>close</i>
         </div>
     }

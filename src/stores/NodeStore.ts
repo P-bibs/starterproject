@@ -17,6 +17,9 @@ export class NodeStore {
     @observable
     public Height: number = 300;
 
+    @observable
+    public IsCurrentlyLinking: boolean = false;
+
     @computed
     public get Transform(): string {
         return "translate(" + this.X + "px, " + this.Y + "px)";

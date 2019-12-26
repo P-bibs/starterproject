@@ -49,9 +49,17 @@ export class NodeCollectionStore extends NodeStore {
     public LinkNode(store: NodeStore): void {
         if (this.CurrentlyLinkingNode == null) {
             this.CurrentlyLinkingNode = store
+            this.CurrentlyLinkingNode.IsCurrentlyLinking = true
         } else {
-            this.LinkedPairs.push([this.CurrentlyLinkingNode, store])
-            this.CurrentlyLinkingNode = null
+            if (store == this.CurrentlyLinkingNode) {
+                // Deselect current node if user clicks it again
+                this.CurrentlyLinkingNode.IsCurrentlyLinking = false
+                this.CurrentlyLinkingNode = null
+            } else {
+                this.LinkedPairs.push([this.CurrentlyLinkingNode, store])
+                this.CurrentlyLinkingNode.IsCurrentlyLinking = false
+                this.CurrentlyLinkingNode = null
+            }
         }
     }
 }
