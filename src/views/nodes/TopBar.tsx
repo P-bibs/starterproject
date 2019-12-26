@@ -42,6 +42,7 @@ export class TopBar extends React.Component<IProps> {
 
     render() {
         return <div className="top" onPointerDown={this.onPointerDown}>
+            <i className="material-icons top-btn" onClick={this.props.store.Link}>link</i>
             <i className="material-icons top-btn" onClick={this.props.store.Destroy}>close</i>
         </div>
     }

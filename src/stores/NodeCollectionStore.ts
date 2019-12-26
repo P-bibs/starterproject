@@ -14,8 +14,14 @@ export class NodeCollectionStore extends NodeStore {
     @observable
     public Nodes: NodeStore[] = new Array<NodeStore>();
 
+    @observable 
+    public LinkedPairs: [NodeStore, NodeStore][] = new Array<[NodeStore, NodeStore]>();
+
     @observable
     public isTopLevel: Boolean = false;
+
+    @observable
+    private CurrentlyLinkingNode: NodeStore = null;
 
     @computed
     public get Transform(): string {
@@ -26,6 +32,7 @@ export class NodeCollectionStore extends NodeStore {
     public AddNodes(stores: NodeStore[]): void {
         stores.forEach((store) => {
             store.Destroy = (): void => this.RemoveNode(store)
+            store.Link = (): void => this.LinkNode(store)
             this.Nodes.push(store)
         });
     }
@@ -33,5 +40,18 @@ export class NodeCollectionStore extends NodeStore {
     @action
     public RemoveNode(storeToRemove: NodeStore): void {
         this.Nodes = this.Nodes.filter((store) => store != storeToRemove)
+        this.LinkedPairs = this.LinkedPairs.filter(
+            (pair) => storeToRemove != pair[0] && storeToRemove != pair[1]
+        )
+    }
+
+    @action
+    public LinkNode(store: NodeStore): void {
+        if (this.CurrentlyLinkingNode == null) {
+            this.CurrentlyLinkingNode = store
+        } else {
+            this.LinkedPairs.push([this.CurrentlyLinkingNode, store])
+            this.CurrentlyLinkingNode = null
+        }
     }
 }
