@@ -2,6 +2,7 @@
     position: absolute;
     background: #cdcdcd;
     overflow: hidden;
+    outline: 2px solid white;
 
     &.minimized {
         width: 30px;
@@ -35,6 +36,14 @@
     .no-scroll-box {
         overflow-y: hidden;
         height: calc(100% - 40px);
+    }
+
+    .node-boundary {
+        position: relative;
+        overflow: hidden;
+        margin: 0px 20px 0px 20px;
+        border: 2px solid white;
+        box-sizing: border-box;
     }
 
     .corner {

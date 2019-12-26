@@ -3,11 +3,19 @@ import { NodeStore } from "./NodeStore";
 
 export class NodeCollectionStore extends NodeStore {
 
+    constructor(initializer: Partial<NodeCollectionStore>) {
+        super();
+        Object.assign(this, initializer);
+    }
+
     @observable
     public Scale: number = 1;
 
     @observable
     public Nodes: NodeStore[] = new Array<NodeStore>();
+
+    @observable
+    public isTopLevel: Boolean = false;
 
     @computed
     public get Transform(): string {
