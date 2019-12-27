@@ -6,4 +6,9 @@
     // Add padding to make node-link easier to click
     padding: 5px;
     background-clip: content-box;
+
+    &.highlighted {
+        background: red;
+        background-clip: content-box;
+    }
 }

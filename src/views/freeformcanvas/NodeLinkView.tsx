@@ -16,11 +16,13 @@ export class NodeLinkView extends React.Component<IProps> {
 
         return (
             <div
-                className="node-link"
+                className={ "node-link" + (this.props.store.Highlighted ? " highlighted" : "") }
                 style={{
                     width: length,
                     transform: ("translate(" + xPos + "px," + yPos + "px) rotate(" + rotation + "rad)")}}
-                onClick={ this.props.store.Destroy }>
+                onClick={ this.props.store.Destroy }
+                onMouseEnter={ this.props.store.Highlight.bind(this.props.store)}
+                onMouseLeave={ this.props.store.Highlight.bind(this.props.store)}>
             </div>
         )
     }

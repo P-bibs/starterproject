@@ -1,4 +1,4 @@
-import { computed, observable } from "mobx";
+import { computed, observable, action } from "mobx";
 import { Utils } from "../Utils";
 import { NodeStore } from "./NodeStore"
 
@@ -12,6 +12,9 @@ export class NodeLinkStore {
 
     @observable
     public Pair: [NodeStore, NodeStore] = null;
+
+    @observable
+    public Highlighted: boolean = false;
 
     @computed
     private get DistanceBetweenNodes(): [number, number] {
@@ -58,6 +61,13 @@ export class NodeLinkStore {
         return rotation
     }
 
-    // This function is created when the link is added to a collection
+    @action
+    public Highlight(): void {
+        console.log("highlight fired")
+        console.log(this)
+        this.Highlighted = !this.Highlighted
+    }
+
+    // These functions are created when the link is added to a collection
     public Destroy(): void {}
 }
