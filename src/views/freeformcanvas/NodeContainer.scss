@@ -3,4 +3,7 @@
     background: black;
     position: absolute;
     height: 3px;
+    // Add padding to make node-link easier to click
+    padding: 5px;
+    background-clip: content-box;
 }

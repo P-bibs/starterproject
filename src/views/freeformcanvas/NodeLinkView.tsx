@@ -19,8 +19,9 @@ export class NodeLinkView extends React.Component<IProps> {
                 className="node-link"
                 style={{
                     width: length,
-                    transform: ("translate(" + xPos + "px," + yPos + "px) rotate(" + rotation + "rad)")
-            }}></div>
+                    transform: ("translate(" + xPos + "px," + yPos + "px) rotate(" + rotation + "rad)")}}
+                onClick={ this.props.store.Destroy }>
+            </div>
         )
     }
 }

@@ -57,10 +57,17 @@ export class NodeCollectionStore extends NodeStore {
                 this.CurrentlyLinkingNode.IsCurrentlyLinking = false
                 this.CurrentlyLinkingNode = null
             } else {
-                this.NodeLinks.push( new NodeLinkStore({ Pair: [this.CurrentlyLinkingNode, store] }))
+                let newNodeLink = new NodeLinkStore({ Pair: [this.CurrentlyLinkingNode, store] })
+                newNodeLink.Destroy = (): void => this.RemoveNodeLink(newNodeLink)
+                this.NodeLinks.push(newNodeLink)
                 this.CurrentlyLinkingNode.IsCurrentlyLinking = false
                 this.CurrentlyLinkingNode = null
             }
         }
+    }
+
+    @action
+    public RemoveNodeLink(linkToRemove: NodeLinkStore): void {
+        this.NodeLinks = this.NodeLinks.filter((link) => {link != linkToRemove})
     }
 }
