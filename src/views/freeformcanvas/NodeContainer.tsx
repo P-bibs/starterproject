@@ -1,5 +1,6 @@
 import { observer } from "mobx-react";
 import { NodeCollectionStore } from "../../stores/NodeCollectionStore";
+import { NodeLinkView } from "./NodeLinkView";
 
 import { StaticTextNodeStore } from "../../stores/StaticTextNodeStore";
 import { WebsiteNodeStore } from "../../stores/WebsiteNodeStore";
@@ -28,23 +29,8 @@ export class NodeContainer extends React.Component<IProps> {
         let store = this.props.store
 
         let content = <div className="node-container">
-            {/* Render links between nodes */}
-            {this.props.store.LinkedPairs.map(pair => {
-                let [n1x, n1y] = pair[0].CenterCoords
-                let [n2x, n2y] = pair[1].CenterCoords
-                // Swap assignments so n1 is always the node farther to the left
-                if (n2x < n1x) {
-                    [n1x, n1y, n2x, n2y] = [n2x, n2y, n1x, n1y]
-                }
-                let dx = n2x - n1x
-                let dy = n2y - n1y
-                // Use pythagorean theorem to calculate line length
-                let length: number = Math.pow(Math.pow(dx, 2) + Math.pow(dy, 2), 1/2)
-                // Use inverse tangent to calculate rotation
-                let rotation: number = Math.atan(dy / dx)
-                return <div className="node-link" style={{ width: length,
-                    transform: ("translate(" + n1x + "px," + n1y + "px) rotate(" + rotation + "rad)")
-                    }}></div>
+            {this.props.store.NodeLinks.map(nodeLinkStore => {
+                return <NodeLinkView key={nodeLinkStore.Id} store={nodeLinkStore} />
             })}
 
             {/* Render nodes */}

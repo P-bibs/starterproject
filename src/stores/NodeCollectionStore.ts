@@ -1,5 +1,6 @@
 import { computed, observable, action } from "mobx";
 import { NodeStore } from "./NodeStore";
+import { NodeLinkStore } from "./NodeLinkStore";
 
 export class NodeCollectionStore extends NodeStore {
 
@@ -15,7 +16,7 @@ export class NodeCollectionStore extends NodeStore {
     public Nodes: NodeStore[] = new Array<NodeStore>();
 
     @observable 
-    public LinkedPairs: [NodeStore, NodeStore][] = new Array<[NodeStore, NodeStore]>();
+    public NodeLinks: NodeLinkStore[] = new Array<NodeLinkStore>();
 
     @observable
     public isTopLevel: Boolean = false;
@@ -40,8 +41,8 @@ export class NodeCollectionStore extends NodeStore {
     @action
     public RemoveNode(storeToRemove: NodeStore): void {
         this.Nodes = this.Nodes.filter((store) => store != storeToRemove)
-        this.LinkedPairs = this.LinkedPairs.filter(
-            (pair) => storeToRemove != pair[0] && storeToRemove != pair[1]
+        this.NodeLinks = this.NodeLinks.filter(
+            (link) => storeToRemove != link.Pair[0] && storeToRemove != link.Pair[1]
         )
     }
 
@@ -56,7 +57,7 @@ export class NodeCollectionStore extends NodeStore {
                 this.CurrentlyLinkingNode.IsCurrentlyLinking = false
                 this.CurrentlyLinkingNode = null
             } else {
-                this.LinkedPairs.push([this.CurrentlyLinkingNode, store])
+                this.NodeLinks.push( new NodeLinkStore({ Pair: [this.CurrentlyLinkingNode, store] }))
                 this.CurrentlyLinkingNode.IsCurrentlyLinking = false
                 this.CurrentlyLinkingNode = null
             }
