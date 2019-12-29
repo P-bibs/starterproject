@@ -42,9 +42,13 @@ export class TopBar extends React.Component<IProps> {
     }
 
     render() {
-        return <div className="top" onPointerDown={this.onPointerDown}>
-            <i className={ "material-icons top-btn" + (this.props.store.IsCurrentlyLinking ? " highlight" : "" )} onClick={this.props.store.Link}>link</i>
-            <i className="material-icons top-btn" onClick={this.props.store.Destroy}>close</i>
-        </div>
+        return (
+            <div className="top" onPointerDown={this.onPointerDown}
+                onMouseEnter={ this.props.store.HighlightNeighbors.bind(this.props.store)}
+                onMouseLeave={ this.props.store.UndoHighlightNeighbors.bind(this.props.store)}>
+                <i className={ "material-icons top-btn" + (this.props.store.IsCurrentlyLinking ? " highlight" : "" )} onClick={this.props.store.Link}>link</i>
+                <i className="material-icons top-btn" onClick={this.props.store.Destroy}>close</i>
+            </div>
+        )
     }
 }

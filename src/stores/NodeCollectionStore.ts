@@ -34,6 +34,8 @@ export class NodeCollectionStore extends NodeStore {
         stores.forEach((store) => {
             store.Destroy = (): void => this.RemoveNode(store)
             store.Link = (): void => this.LinkNode(store)
+            store.HighlightNeighbors = (): void => this.HighlightNodeNeighbors(store)
+            store.UndoHighlightNeighbors = (): void => this.ClearNodeHighlighting()
             this.Nodes.push(store)
         });
     }
@@ -69,6 +71,20 @@ export class NodeCollectionStore extends NodeStore {
     @action
     public RemoveNodeLink(linkToRemove: NodeLinkStore): void {
         this.NodeLinks = this.NodeLinks.filter((link) => {link != linkToRemove})
+    }
+
+    @action
+    public HighlightNodeNeighbors(store: NodeStore): void {
+        this.Nodes.forEach((node) => {
+            if (this.NodeLinks.some( (nodeLink) => nodeLink.ConnectsNodes(store, node) )) {
+                node.Highlighted = true
+            }
+        })
+    }
+    
+    @action
+    public ClearNodeHighlighting(): void {
+        this.Nodes.forEach((node) => node.Highlighted = false)
     }
 
     @action

@@ -62,7 +62,7 @@ export class NodeContainer extends React.Component<IProps> {
         } else {
             // If this TextEditorNodeView exists as a nested collection, we need to add some extra HTML
             return (
-                <div className="node" style={{ transform: store.Translate, width: store.Width, height: store.Height }}>
+                <div className={"node" + (store.Highlighted ? " highlighted" : "")} style={{ transform: store.Translate, width: store.Width, height: store.Height }}>
                     <TopBar store={store} />
                     <div className="no-scroll-box node-boundary"  onWheel={this.props.store.HandleZoom.bind(this.props.store)}>
                         <div className="content" style={{ transform: store.Zoom }}>

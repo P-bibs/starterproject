@@ -61,6 +61,18 @@ export class NodeLinkStore {
         return rotation
     }
 
+    public ConnectsNodes(node1: NodeStore, node2?: NodeStore): boolean {
+        if (node2 == undefined) {
+            return this.Pair[0] == node1 || this.Pair[1] == node1
+        } else {
+            return (
+                (this.Pair[0] == node1 && this.Pair[1] == node2)
+                ||
+                (this.Pair[0] == node2 && this.Pair[1] == node1)
+            )
+        }
+    }
+
     @action
     public Highlight(): void {
         console.log("highlight fired")

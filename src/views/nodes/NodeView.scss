@@ -10,6 +10,10 @@
         height: 30px;
     }
 
+    &.highlighted {
+        outline: 3px solid rgb(255, 255, 0);
+    }
+
     .top {
         background: #232323;
         height: 20px;

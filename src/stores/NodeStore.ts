@@ -1,4 +1,4 @@
-import { computed, observable } from "mobx";
+import { computed, observable, action } from "mobx";
 import { Utils } from "../Utils";
 
 export class NodeStore {
@@ -18,6 +18,9 @@ export class NodeStore {
     public Height: number = 300;
 
     @observable
+    public Highlighted: boolean = false;
+
+    @observable
     public IsCurrentlyLinking: boolean = false;
 
     @computed
@@ -31,6 +34,13 @@ export class NodeStore {
     }
 
     //These functions are created when the store is added to a collection
+    @action
     public Destroy(): void {}
+    @action
     public Link(): void {}
+    @action
+    public HighlightNeighbors(): void {}
+    @action
+    public UndoHighlightNeighbors(): void {}
+
 }

@@ -16,7 +16,7 @@ export class VideoNodeView extends React.Component<IProps> {
     render() {
         let store = this.props.store;
         return (
-            <div className="node video-node" style={{ transform: store.Translate, width: store.Width, height: store.Height }}
+            <div className={"node video-node" + (store.Highlighted ? " highlighted" : "")} style={{ transform: store.Translate, width: store.Width, height: store.Height }}
                 onPointerDown={ (e) => e.stopPropagation() }>
                     
                 <TopBar store={store} />
