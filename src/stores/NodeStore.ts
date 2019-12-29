@@ -21,7 +21,7 @@ export class NodeStore {
     public IsCurrentlyLinking: boolean = false;
 
     @computed
-    public get Transform(): string {
+    public get Translate(): string {
         return "translate(" + this.X + "px, " + this.Y + "px)";
     }
 
