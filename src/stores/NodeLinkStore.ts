@@ -75,8 +75,6 @@ export class NodeLinkStore {
 
     @action
     public Highlight(): void {
-        console.log("highlight fired")
-        console.log(this)
         this.Highlighted = !this.Highlighted
     }
 

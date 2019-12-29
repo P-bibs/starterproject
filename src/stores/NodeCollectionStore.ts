@@ -70,7 +70,7 @@ export class NodeCollectionStore extends NodeStore {
 
     @action
     public RemoveNodeLink(linkToRemove: NodeLinkStore): void {
-        this.NodeLinks = this.NodeLinks.filter((link) => {link != linkToRemove})
+        this.NodeLinks = this.NodeLinks.filter((link) => link != linkToRemove)
     }
 
     @action
