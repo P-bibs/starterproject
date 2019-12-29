@@ -6,11 +6,13 @@ import { StaticTextNodeStore } from "../../stores/StaticTextNodeStore";
 import { WebsiteNodeStore } from "../../stores/WebsiteNodeStore";
 import { VideoNodeStore } from "../../stores/VideoNodeStore";
 import { ImageNodeStore } from "../../stores/ImageNodeStore";
+import { TextEditorNodeStore } from "../../stores/TextEditorNodeStore";
 
 import { TextNodeView } from "../nodes/TextNodeView";
 import { VideoNodeView } from "../nodes/VideoNodeView";
 import { WebsiteNodeView } from "../nodes/WebsiteNodeView";
 import { ImageNodeView } from "../nodes/ImageNodeView";
+import { TextEditorNodeView } from "../nodes/TextEditorNodeView";
 
 import { TopBar } from "../nodes/TopBar"
 import { ResizeCorner } from "../nodes/ResizeCorner"
@@ -45,6 +47,8 @@ export class NodeContainer extends React.Component<IProps> {
                     return (<ImageNodeView key={nodeStore.Id} store={nodeStore as ImageNodeStore} />)
                 } else if (nodeStore instanceof NodeCollectionStore) {
                     return (<NodeContainer key={nodeStore.Id} store={nodeStore as NodeCollectionStore} />)
+                } else if (nodeStore instanceof TextEditorNodeStore) {
+                    return (<TextEditorNodeView key={nodeStore.Id} store={nodeStore as TextEditorNodeStore} />)
                 }
             })}
         </div>
