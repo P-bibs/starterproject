@@ -1,4 +1,4 @@
-import { observable, action } from "mobx";
+import { observable, computed, action } from "mobx";
 import { NodeStore } from "./NodeStore";
 
 export class TextEditorNodeStore extends NodeStore {
