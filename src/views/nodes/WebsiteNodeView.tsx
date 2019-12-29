@@ -15,7 +15,7 @@ export class WebsiteNodeView extends React.Component<IProps> {
     render() {
         let store = this.props.store;
         return (
-            <div className="node website-node" style={{ transform: store.Transform, width: store.Width, height: store.Height}}
+            <div className="node website-node" style={{ transform: store.Translate, width: store.Width, height: store.Height}}
                 onPointerDown={ (e) => e.stopPropagation() }>
                     
                 <TopBar store={store} />

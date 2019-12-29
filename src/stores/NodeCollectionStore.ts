@@ -25,8 +25,8 @@ export class NodeCollectionStore extends NodeStore {
     private CurrentlyLinkingNode: NodeStore = null;
 
     @computed
-    public get Transform(): string {
-        return "translate(" + this.X + "px," + this.Y + "px) scale(" + this.Scale + "," + this.Scale + ")";
+    public get Zoom(): string {
+        return "scale(" + this.Scale + "," + this.Scale + ")";
     }
 
     @action
@@ -70,4 +70,39 @@ export class NodeCollectionStore extends NodeStore {
     public RemoveNodeLink(linkToRemove: NodeLinkStore): void {
         this.NodeLinks = this.NodeLinks.filter((link) => {link != linkToRemove})
     }
+
+    @action
+    HandleZoom (event: React.WheelEvent): void {
+        // Logic to implement zoom-in at mouse-location
+        event.stopPropagation()
+        // Calculate the click's location on the canvas
+        let absoluteX = (event.pageX - this.X) / this.Scale
+        let absoluteY = (event.pageY - this.Y) / this.Scale
+        // bound deltaY on either side
+        event.deltaY = Math.max(-3, Math.min(3, event.deltaY)) 
+        let zoomDelta = this.Scale * event.deltaY * -.01;
+        let oldScale = this.Scale
+        let newScale = this.Scale + zoomDelta
+        // Create a slightly different normalization factor if zooming out than in
+        let normalizationFactor = 1/ (zoomDelta > 0 ? newScale : oldScale)
+
+        // Calculate offset
+        let offsetX = event.pageX/(newScale*normalizationFactor) - event.pageX/(oldScale*normalizationFactor)
+        // Convert offset to scaled coordinate system
+        offsetX *= (zoomDelta > 0 ? newScale : oldScale) 
+        // Account for zooming on negative side of axis
+        if (absoluteX < 0) offsetX *= -1
+
+        let offsetY = event.pageY/(newScale*normalizationFactor) - event.pageY/(oldScale*normalizationFactor)
+        offsetY *= (zoomDelta > 0 ? newScale : oldScale)
+        if (absoluteY < 0) offsetY *= -1
+
+        this.Scale = newScale
+        if (this.isTopLevel) {
+            // TODO: implement zooming for nested collections
+            this.X += offsetX
+            this.Y += offsetY
+        }
+    }
+
 }

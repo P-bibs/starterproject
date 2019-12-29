@@ -54,14 +54,18 @@ export class NodeContainer extends React.Component<IProps> {
         </div>
 
         if (store.isTopLevel) {
-            return content
-        } else {
-            // If this NodeContainer exists as a nested collection, we need to add some extra HTML
             return (
-                <div className="node" style={{ transform: store.Transform, width: store.Width, height: store.Height }}>
+                <div style={{ transform: store.Zoom }}>
+                    {content}
+                </div>
+            )
+        } else {
+            // If this TextEditorNodeView exists as a nested collection, we need to add some extra HTML
+            return (
+                <div className="node" style={{ transform: store.Translate, width: store.Width, height: store.Height }}>
                     <TopBar store={store} />
-                    <div className="no-scroll-box node-boundary">
-                        <div className="content">
+                    <div className="no-scroll-box node-boundary"  onWheel={this.props.store.HandleZoom.bind(this.props.store)}>
+                        <div className="content" style={{ transform: store.Zoom }}>
                             {content}
                         </div>
                     </div>

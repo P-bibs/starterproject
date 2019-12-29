@@ -43,9 +43,10 @@ export class FreeFormCanvas extends React.Component<IProps> {
 
     render() {
         let store = this.props.store;
+
         return (
-            <div className="freeformcanvas-container" onPointerDown={this.onPointerDown}>
-                <div className="freeformcanvas" style={{ transform: store.Transform }}>
+            <div className="freeformcanvas-container" onPointerDown={this.onPointerDown} onWheel={this.props.store.HandleZoom.bind(this.props.store)}>
+                <div className="freeformcanvas" style={{ transform: store.Translate }}>
                     <NodeContainer store={store} />
                 </div>
             </div>
