@@ -73,37 +73,36 @@ export class NodeCollectionStore extends NodeStore {
 
     @action
     HandleZoom (event: React.WheelEvent): void {
+        // Logic to implement zoom-in at mouse-location
         event.stopPropagation()
-        let absoluteX = this.X + event.pageX
-        let absoluteY = this.Y + event.pageY
-        event.deltaY = Math.max(-3, Math.min(3, event.deltaY))
+        // Calculate the click's location on the canvas
+        let absoluteX = (event.pageX - this.X) / this.Scale
+        let absoluteY = (event.pageY - this.Y) / this.Scale
+        // bound deltaY on either side
+        event.deltaY = Math.max(-3, Math.min(3, event.deltaY)) 
         let zoomDelta = this.Scale * event.deltaY * -.01;
         let oldScale = this.Scale
         let newScale = this.Scale + zoomDelta
-        let normalizationFactor = 1/oldScale
-        //let normalizationFactor = 1
+        // Create a slightly different normalization factor if zooming out than in
+        let normalizationFactor = 1/ (zoomDelta > 0 ? newScale : oldScale)
+
+        // Calculate offset
         let offsetX = event.pageX/(newScale*normalizationFactor) - event.pageX/(oldScale*normalizationFactor)
-        //let offsetY = event.pageY/(newScale*normalizationFactor) - event.pageY/(oldScale*normalizationFactor)
-        //this.X += event.deltaY * (event.pageX / (this.isTopLevel ? window.innerWidth : this.Width)) * 19
-        
-    
-        let s = event.pageX
-        let z2 = newScale
-        let t1 = this.X
-        let z1 = oldScale
-        offsetX = (s)-(z2/1)*((s-t1)/(z1))
-        /*
-        let r = event.pageX
-        let t1 = this.X
-        let s1 = oldScale
-        let s2 = newScale
-        offsetX = (r)-((r-t1)/(s1))*(s2)
-*/
-        console.log(newScale)
-        console.log(offsetX)
+        // Convert offset to scaled coordinate system
+        offsetX *= (zoomDelta > 0 ? newScale : oldScale) 
+        // Account for zooming on negative side of axis
+        if (absoluteX < 0) offsetX *= -1
+
+        let offsetY = event.pageY/(newScale*normalizationFactor) - event.pageY/(oldScale*normalizationFactor)
+        offsetY *= (zoomDelta > 0 ? newScale : oldScale)
+        if (absoluteY < 0) offsetY *= -1
+
         this.Scale = newScale
-        this.X += offsetX
-        //this.Y += offsetY
+        if (this.isTopLevel) {
+            // TODO: implement zooming for nested collections
+            this.X += offsetX
+            this.Y += offsetY
+        }
     }
 
 }
