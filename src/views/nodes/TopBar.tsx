@@ -37,8 +37,8 @@ export class TopBar extends React.Component<IProps> {
         if (!this._isPointerDown) {
             return;
         }
-        this.props.store.X += e.movementX;
-        this.props.store.Y += e.movementY;
+        this.props.store.X += e.movementX / this.props.store.GetParentScale();
+        this.props.store.Y += e.movementY / this.props.store.GetParentScale();
     }
 
     render() {

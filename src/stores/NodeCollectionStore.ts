@@ -13,6 +13,12 @@ export class NodeCollectionStore extends NodeStore {
     public Scale: number = 1;
 
     @observable
+    public ViewX: number = 0;
+
+    @observable
+    public ViewY: number = 0;
+
+    @observable
     public Nodes: NodeStore[] = new Array<NodeStore>();
 
     @observable 
@@ -29,9 +35,15 @@ export class NodeCollectionStore extends NodeStore {
         return "scale(" + this.Scale + "," + this.Scale + ")";
     }
 
+    @computed
+    public get Pan(): string {
+        return "translate(" + this.ViewX + "px," + this.ViewY + "px)";
+    }
+
     @action
     public AddNodes(stores: NodeStore[]): void {
         stores.forEach((store) => {
+            store.GetParentScale = () => this.GetParentScale() * this.Scale
             store.Destroy = (): void => this.RemoveNode(store)
             store.Link = (): void => this.LinkNode(store)
             store.HighlightNeighbors = (): void => this.HighlightNodeNeighbors(store)
@@ -116,8 +128,9 @@ export class NodeCollectionStore extends NodeStore {
         this.Scale = newScale
         if (this.isTopLevel) {
             // TODO: implement zooming for nested collections
-            this.X += offsetX
-            this.Y += offsetY
+            this.ViewX += offsetX
+            this.ViewY += offsetY
+            console.log(offsetX)
         }
     }
 

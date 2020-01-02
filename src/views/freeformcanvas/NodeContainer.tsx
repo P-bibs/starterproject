@@ -16,8 +16,8 @@ import { TextEditorNodeView } from "../nodes/TextEditorNodeView";
 
 import { TopBar } from "../nodes/TopBar"
 import { ResizeCorner } from "../nodes/ResizeCorner"
-import "./FreeFormCanvas.scss";
 import "./NodeContainer.scss"
+import "../nodes/NodeView.scss"
 import React = require("react");
 
 interface IProps {
@@ -26,6 +26,37 @@ interface IProps {
 
 @observer
 export class NodeContainer extends React.Component<IProps> {
+
+    private _isPointerDown: boolean;
+
+    onPointerDown = (e: React.PointerEvent): void => {
+        e.stopPropagation();
+        e.preventDefault();
+        this._isPointerDown = true;
+        document.removeEventListener("pointermove", this.onPointerMove);
+        document.addEventListener("pointermove", this.onPointerMove);
+        document.removeEventListener("pointerup", this.onPointerUp);
+        document.addEventListener("pointerup", this.onPointerUp);
+    }
+
+    onPointerUp = (e: PointerEvent): void => {
+        e.stopPropagation();
+        e.preventDefault();
+        this._isPointerDown = false;
+        document.removeEventListener("pointermove", this.onPointerMove);
+        document.removeEventListener("pointerup", this.onPointerUp);
+    }
+
+    onPointerMove = (e: PointerEvent): void => {
+        e.stopPropagation();
+        e.preventDefault();
+        if (!this._isPointerDown) {
+            return;
+        }
+        let store = this.props.store
+        store.ViewX += e.movementX / store.GetParentScale() / store.Scale;
+        store.ViewY += e.movementY / store.GetParentScale() / store.Scale;
+    }
 
     render() {
         let store = this.props.store
@@ -55,17 +86,22 @@ export class NodeContainer extends React.Component<IProps> {
 
         if (store.isTopLevel) {
             return (
-                <div style={{ transform: store.Zoom }}>
-                    {content}
+                <div className="freeformcanvas-container" onPointerDown={this.onPointerDown} onWheel={store.HandleZoom.bind(store)}>
+                    <div className="freeformcanvas" >
+                        <div style={{ transform: store.Zoom + " " + store.Pan }}>
+                            {content}
+                        </div>
+                    </div>
                 </div>
+                
             )
         } else {
-            // If this TextEditorNodeView exists as a nested collection, we need to add some extra HTML
+            // If this NodeStore exists as a nested collection, we need to add some extra HTML
             return (
                 <div className={"node" + (store.Highlighted ? " highlighted" : "")} style={{ transform: store.Translate, width: store.Width, height: store.Height }}>
                     <TopBar store={store} />
-                    <div className="no-scroll-box node-boundary"  onWheel={this.props.store.HandleZoom.bind(this.props.store)}>
-                        <div className="content" style={{ transform: store.Zoom }}>
+                    <div className="no-scroll-box node-boundary"  onPointerDown={this.onPointerDown} onWheel={store.HandleZoom.bind(store)}>
+                        <div className="content" style={{ transform: store.Zoom + " " + store.Pan }}>
                             {content}
                         </div>
                     </div>

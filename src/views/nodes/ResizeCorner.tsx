@@ -37,8 +37,9 @@ export class ResizeCorner extends React.Component<IProps> {
             return;
         }
         // Prevent nodes from being resized too small
-        this.props.store.Width = Math.max(this.props.store.Width + e.movementX, 40);
-        this.props.store.Height = Math.max(this.props.store.Height + e.movementY, 40);
+        let store = this.props.store
+        store.Width = Math.max(store.Width + e.movementX / store.GetParentScale(), 40);
+        store.Height = Math.max(store.Height + e.movementY / store.GetParentScale(), 40);
 
     }
 

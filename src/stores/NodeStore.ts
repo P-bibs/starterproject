@@ -42,5 +42,8 @@ export class NodeStore {
     public HighlightNeighbors(): void {}
     @action
     public UndoHighlightNeighbors(): void {}
+    // This property has to be a method instead of a getter because getters can't be reassigned
+    public GetParentScale: () => number;
+    
 
 }
