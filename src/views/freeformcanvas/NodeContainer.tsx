@@ -13,6 +13,8 @@ import { VideoNodeView } from "../nodes/VideoNodeView";
 import { WebsiteNodeView } from "../nodes/WebsiteNodeView";
 import { ImageNodeView } from "../nodes/ImageNodeView";
 import { TextEditorNodeView } from "../nodes/TextEditorNodeView";
+import { NodeCreationDropdownView } from "../../node_creation/NodeCreationDropdownView";
+import { NodeCreationModalView } from "../../node_creation/NodeCreationModalView";
 
 import { TopBar } from "../nodes/TopBar"
 import { ResizeCorner } from "../nodes/ResizeCorner"
@@ -28,11 +30,14 @@ interface IProps {
 export class NodeContainer extends React.Component<IProps> {
 
     private _isPointerDown: boolean;
+    private _distancePanned: number = 0;
 
     onPointerDown = (e: React.PointerEvent): void => {
         e.stopPropagation();
         e.preventDefault();
         this._isPointerDown = true;
+        this._distancePanned = 0;
+        this.props.store.HideDropdown();
         document.removeEventListener("pointermove", this.onPointerMove);
         document.addEventListener("pointermove", this.onPointerMove);
         document.removeEventListener("pointerup", this.onPointerUp);
@@ -43,6 +48,9 @@ export class NodeContainer extends React.Component<IProps> {
         e.stopPropagation();
         e.preventDefault();
         this._isPointerDown = false;
+        if (this._distancePanned < 3) {
+            this.props.store.CreateDropdown(e.pageX, e.pageY, this.props.store)
+        }
         document.removeEventListener("pointermove", this.onPointerMove);
         document.removeEventListener("pointerup", this.onPointerUp);
     }
@@ -56,6 +64,8 @@ export class NodeContainer extends React.Component<IProps> {
         let store = this.props.store
         store.ViewX += e.movementX / store.GetParentScale() / store.Scale;
         store.ViewY += e.movementY / store.GetParentScale() / store.Scale;
+
+        this._distancePanned += Math.abs(e.movementX) + Math.abs(e.movementY)
     }
 
     render() {
@@ -86,10 +96,25 @@ export class NodeContainer extends React.Component<IProps> {
 
         if (store.isTopLevel) {
             return (
-                <div className="freeformcanvas-container" onPointerDown={this.onPointerDown} onWheel={store.HandleZoom.bind(store)}>
-                    <div className="freeformcanvas" >
-                        <div style={{ transform: store.Zoom + " " + store.Pan }}>
-                            {content}
+                <div>
+                    {/* Render Modal */}
+                    { store.CurrentModal ?
+                        <div className="darkened-background" onClick={store.HideModal.bind(store)}>
+                            <NodeCreationModalView store={store.CurrentModal} />
+                        </div>
+                    :   
+                        <div />
+                    }
+
+                    <div className="freeformcanvas-container" onPointerDown={this.onPointerDown} onWheel={store.HandleZoom.bind(store)}>
+                        <div className="freeformcanvas" >
+                            {/* Render Dropdown */}
+                            { store.CurrentDropdown ? <NodeCreationDropdownView store={store.CurrentDropdown} /> : <div /> }
+                                
+                            {/* Render Nodes */}
+                            <div style={{ transform: store.Zoom + " " + store.Pan }}>
+                                {content}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,10 @@
 import { computed, observable, action } from "mobx";
 import { NodeStore } from "./NodeStore";
 import { NodeLinkStore } from "./NodeLinkStore";
+import { NodeType } from "../node_creation/FormItemInfo"
+import { NodeCreationDropdownStore } from "../node_creation/NodeCreationDropdownStore";
+import { NodeCreationModalStore } from "../node_creation/NodeCreationModalStore";
+
 
 export class NodeCollectionStore extends NodeStore {
 
@@ -30,6 +34,12 @@ export class NodeCollectionStore extends NodeStore {
     @observable
     private CurrentlyLinkingNode: NodeStore = null;
 
+    @observable
+    public CurrentDropdown: NodeCreationDropdownStore = null;
+
+    @observable
+    public CurrentModal: NodeCreationModalStore = null;
+
     @computed
     public get Zoom(): string {
         return "scale(" + this.Scale + "," + this.Scale + ")";
@@ -48,6 +58,11 @@ export class NodeCollectionStore extends NodeStore {
             store.Link = (): void => this.LinkNode(store)
             store.HighlightNeighbors = (): void => this.HighlightNodeNeighbors(store)
             store.UndoHighlightNeighbors = (): void => this.ClearNodeHighlighting()
+            if (store instanceof NodeCollectionStore) {
+                // Allow nested collections to manipulate parent dropdown
+                store.CreateDropdown = (x: number, y: number, collection: NodeCollectionStore): void => this.CreateDropdown(x,y,collection)
+                store.HideDropdown = (): void => this.HideDropdown()
+            }
             this.Nodes.push(store)
         });
     }
@@ -100,12 +115,39 @@ export class NodeCollectionStore extends NodeStore {
     }
 
     @action
+    public CreateDropdown(x: number, y: number, collection: NodeCollectionStore ) {
+        if (this.isTopLevel) {
+            this.CurrentDropdown = new NodeCreationDropdownStore(x, y, collection, this)
+        } else {
+            // nested collections should always create dropdowns on their top-most parent
+            throw new Error("Dropdowns should only be created on top-level stores")
+        }        
+    }
+
+    @action
+    public HideDropdown() {
+        this.CurrentDropdown = null;
+    }
+
+    @action
+    public CreateModal(x: number, y: number, collection: NodeCollectionStore, container: NodeCollectionStore, nodeType: NodeType) {
+        const newModal = new NodeCreationModalStore(x, y, collection, container, nodeType);
+        this.CurrentModal = newModal
+    }
+
+    @action
+    public HideModal() {
+        this.CurrentModal = null;
+    }
+
+    @action
     HandleZoom (event: React.WheelEvent): void {
         // Logic to implement zoom-in at mouse-location
         event.stopPropagation()
+        this.HideDropdown();
         // Calculate the click's location on the canvas
-        let absoluteX = (event.pageX - this.X) / this.Scale
-        let absoluteY = (event.pageY - this.Y) / this.Scale
+        let absoluteX = (event.pageX - this.ViewX) / this.Scale
+        let absoluteY = (event.pageY - this.ViewY) / this.Scale
         // bound deltaY on either side
         event.deltaY = Math.max(-3, Math.min(3, event.deltaY)) 
         let zoomDelta = this.Scale * event.deltaY * -.01;
