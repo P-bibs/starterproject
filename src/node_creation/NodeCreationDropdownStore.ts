@@ -27,7 +27,8 @@ export class NodeCreationDropdownStore {
         "Video Node": NodeType.VideoNode,
         "Website Node": NodeType.WebsiteNode,
         "Text Editor Node": NodeType.TextEditorNode,
-        "Node Collection": NodeType.NodeCollection
+        "Node Collection": NodeType.NodeCollection,
+        "PDF Node": NodeType.WebsiteNode
     }
 
     public readonly OptionKeys: { [key: string]: string } = {
@@ -36,7 +37,8 @@ export class NodeCreationDropdownStore {
         "Video Node": Utils.GenerateGuid(),
         "Website Node": Utils.GenerateGuid(),
         "Text Editor Node": Utils.GenerateGuid(),
-        "Node Collection": Utils.GenerateGuid()
+        "Node Collection": Utils.GenerateGuid(),
+        "PDF Node": Utils.GenerateGuid(),
     }
 
     @computed
