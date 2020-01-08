@@ -18,8 +18,9 @@ export class TextEditorNodeView extends React.Component<IProps> {
         let store = this.props.store;
         let QUILL_HEIGHT_EDITOR_OFFSET = 150
         return (
-            <div className={"node text-edit-node" + (store.Highlighted ? " highlighted" : "")} style={{ transform: store.Translate, width: store.Width, height: store.Height }}
-                onPointerDown={ (e) => e.stopPropagation() }>
+            <div className={"node text-edit-node" + (store.Highlighted ? " highlighted" : "")}
+                style={{ transform: store.Translate, width: store.Width, height: store.Height }}
+                onPointerDown={ (e) => e.stopPropagation() } onWheel={ (e) => e.stopPropagation() }>
 
                 <TopBar store={store} />
                 <div className="no-scroll-box">

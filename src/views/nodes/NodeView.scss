@@ -1,6 +1,5 @@
 .node {
     position: absolute;
-    background: #cdcdcd;
     background: rgb(233, 233, 233);
     overflow: hidden;
     outline: 2px solid white;
@@ -25,6 +24,7 @@
             font-size: 20px;
             cursor: pointer;
         }
+
         .highlight {
             color: yellow;
         }
@@ -67,4 +67,3 @@
         cursor: nwse-resize;
     }
 }
-

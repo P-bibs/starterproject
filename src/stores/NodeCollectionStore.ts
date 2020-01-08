@@ -14,6 +14,12 @@ export class NodeCollectionStore extends NodeStore {
     }
 
     @observable
+    public Width: number = 600;
+
+    @observable
+    public Height: number = 600;
+
+    @observable
     public Scale: number = 1;
 
     @observable
@@ -55,7 +61,7 @@ export class NodeCollectionStore extends NodeStore {
         stores.forEach((store) => {
             store.GetParentScale = () => this.GetParentScale() * this.Scale
             store.Destroy = (): void => this.RemoveNode(store)
-            store.Link = (): void => this.LinkNode(store)
+            store.Link = (): void => this.AddNodeLink(store)
             store.HighlightNeighbors = (): void => this.HighlightNodeNeighbors(store)
             store.UndoHighlightNeighbors = (): void => this.ClearNodeHighlighting()
             if (store instanceof NodeCollectionStore) {
@@ -76,7 +82,7 @@ export class NodeCollectionStore extends NodeStore {
     }
 
     @action
-    public LinkNode(store: NodeStore): void {
+    public AddNodeLink(store: NodeStore): void {
         if (this.CurrentlyLinkingNode == null) {
             this.CurrentlyLinkingNode = store
             this.CurrentlyLinkingNode.IsCurrentlyLinking = true
