@@ -27,7 +27,7 @@
 ## Node Controls
 * Drag a node by its top bar to move it.
 * Drag the bottom right corner of a node to resize it.
-* Click the 'x' button to delete a node.
+* Click the ![close icon](https://paulbiberstein.me/resources/close-icon.png) button to delete a node.
 * Click the ![link icon](https://paulbiberstein.me/resources/link-icon.png) of one node and then another to link two nodes
 
 ## Node Links
