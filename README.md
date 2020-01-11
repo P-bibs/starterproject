@@ -1,4 +1,48 @@
-# Starter Project
+# Dash Starter Project
+
+## Canvas Controls
+
+* Click and drag to pan, or scroll to zoom.
+* Left click on a blank area to create a new node.
+
+## Node Types
+
+* Static Text Node
+  * Displays input text as plain-text.
+* Markdown Node
+  * Displays input text formatted according to the Markdown markup language.
+* Image Node
+  * Displays the image located at the given URL.
+* PDF Node
+  * Displays the PDF located at the given URL.
+* Video Node
+  * Displays the video located at the given URL.
+* Website Node
+  * Shows an embedded view of the website at the given URL (website must allow embedding).
+* Text Editor Node
+  * Displays a rich text editor that allows display and manipulation of decorated text.
+* Node Collection
+  * Displays a nested collection in which you may create more nodes.
+
+## Node Controls
+* Drag a node by its top bar to move it.
+* Drag the bottom right corner of a node to resize it.
+* Click the 'x' button to delete a node.
+* Click the [LINK ICON] of one node and then another to link two nodes
+
+## Node Links
+* Two linked nodes have a line connecting them.
+* Hover over the top bar of a node to highlight all connected nodes.
+* Click a link to delete it.
+* Nodes may only be linked to other nodes in the same collection.
+
+## Other Collection Views
+* Click the [INFO ICON] button in the top left of a collection to see a list of all the nodes in the collection and their titles.
+
+## Additional Top-Level Collections
+* Use the tabs at the top to create, switch between, and delete different top-level collections.
+
+## Running locally
 Install Node.js, then, from the project directory, run
 
 * `npm install`
