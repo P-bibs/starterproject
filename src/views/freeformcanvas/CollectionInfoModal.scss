@@ -1,0 +1,41 @@
+.modal {
+
+    margin: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .table {
+        width: 100%;
+        overflow-y: scroll;
+
+        .row {
+            width: 100%;
+            border-bottom: 1px solid grey;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            align-content: center;
+        }
+        
+        .node-name-column {
+            width: 10em;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        .node-title-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            align-content: center;
+        }
+    }
+
+}

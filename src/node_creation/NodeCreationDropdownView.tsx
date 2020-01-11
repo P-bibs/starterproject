@@ -14,7 +14,7 @@ export class NodeCreationDropdownView extends React.Component<IProps> {
 
     onClick = (nodeType: NodeType) => {
         let store = this.props.store;
-        store.Container.CreateModal(store.X, store.Y, store.Collection, store.Container, nodeType);
+        store.Container.CreateNodeCreationModal(store.X, store.Y, store.Collection, store.Container, nodeType);
         store.Container.HideDropdown();
     }
 

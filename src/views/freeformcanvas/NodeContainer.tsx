@@ -7,6 +7,8 @@ import { WebsiteNodeStore } from "../../stores/WebsiteNodeStore";
 import { VideoNodeStore } from "../../stores/VideoNodeStore";
 import { ImageNodeStore } from "../../stores/ImageNodeStore";
 import { TextEditorNodeStore } from "../../stores/TextEditorNodeStore";
+import { NodeCreationModalStore } from "../../node_creation/NodeCreationModalStore";
+import { CollectionInfoModalStore } from "../../stores/CollectionInfoModalStore";
 
 import { TextNodeView } from "../nodes/TextNodeView";
 import { VideoNodeView } from "../nodes/VideoNodeView";
@@ -15,6 +17,7 @@ import { ImageNodeView } from "../nodes/ImageNodeView";
 import { TextEditorNodeView } from "../nodes/TextEditorNodeView";
 import { NodeCreationDropdownView } from "../../node_creation/NodeCreationDropdownView";
 import { NodeCreationModalView } from "../../node_creation/NodeCreationModalView";
+import { CollectionInfoModalView } from "./CollectionInfoModalView"
 
 import { TopBar } from "../nodes/TopBar"
 import { ResizeCorner } from "../nodes/ResizeCorner"
@@ -97,19 +100,32 @@ export class NodeContainer extends React.Component<IProps> {
             })}
         </div>
 
+        let modal;
+        if (store.CurrentModal instanceof NodeCreationModalStore) {
+            modal = <NodeCreationModalView store={store.CurrentModal as NodeCreationModalStore} />
+        } else if (store.CurrentModal instanceof CollectionInfoModalStore) {
+            modal = <CollectionInfoModalView store={store.CurrentModal as CollectionInfoModalStore} />
+        }
+
         if (store.isTopLevel) {
             return (
                 <div>
                     {/* Render Modal */}
                     { store.CurrentModal ?
                         <div className="darkened-background" onClick={store.HideModal.bind(store)}>
-                            <NodeCreationModalView store={store.CurrentModal} />
+                            {modal}
                         </div>
                     :   
                         <div />
                     }
 
                     <div className="freeformcanvas-container" onPointerDown={this.onPointerDown} onWheel={store.HandleZoom.bind(store)}>
+                        {/* Render info button */}
+                        <button className="collection-info-button"
+                            onPointerDown={(e) => { e.stopPropagation(); store.CreateInfoModal(store) }}>
+                            <i className="material-icons">info</i>
+                        </button>
+
                         <div className="freeformcanvas" >
                             {/* Render Dropdown */}
                             { store.CurrentDropdown ? <NodeCreationDropdownView store={store.CurrentDropdown} /> : <div /> }
@@ -129,6 +145,12 @@ export class NodeContainer extends React.Component<IProps> {
                 <div className={"node" + (store.Highlighted ? " highlighted" : "")} style={{ transform: store.Translate, width: store.Width, height: store.Height }}>
                     <TopBar store={store} />
                     <div className="no-scroll-box node-boundary"  onPointerDown={this.onPointerDown} onWheel={store.HandleZoom.bind(store)}>
+                        {/* Render info button */}
+                        <button className="collection-info-button"
+                            onPointerDown={(e) => { e.stopPropagation(); store.CreateInfoModal(store) }}>
+                            <i className="material-icons">info</i>
+                        </button>
+
                         <div className="content" style={{ transform: store.Zoom + " " + store.Pan }}>
                             {content}
                         </div>

@@ -18,6 +18,9 @@ export class NodeStore {
     public Height: number = 300;
 
     @observable
+    public Title: string = "";
+
+    @observable
     public Highlighted: boolean = false;
 
     @observable

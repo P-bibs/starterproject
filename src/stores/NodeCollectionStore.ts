@@ -2,8 +2,10 @@ import { computed, observable, action } from "mobx";
 import { NodeStore } from "./NodeStore";
 import { NodeLinkStore } from "./NodeLinkStore";
 import { NodeType } from "../node_creation/FormItemInfo"
+import { ModalStore } from "./ModalStore";
 import { NodeCreationDropdownStore } from "../node_creation/NodeCreationDropdownStore";
 import { NodeCreationModalStore } from "../node_creation/NodeCreationModalStore";
+import { CollectionInfoModalStore } from "./CollectionInfoModalStore";
 
 
 export class NodeCollectionStore extends NodeStore {
@@ -44,7 +46,7 @@ export class NodeCollectionStore extends NodeStore {
     public CurrentDropdown: NodeCreationDropdownStore = null;
 
     @observable
-    public CurrentModal: NodeCreationModalStore = null;
+    public CurrentModal: ModalStore = null;
 
     @computed
     public get Zoom(): string {
@@ -65,8 +67,9 @@ export class NodeCollectionStore extends NodeStore {
             store.HighlightNeighbors = (): void => this.HighlightNodeNeighbors(store)
             store.UndoHighlightNeighbors = (): void => this.ClearNodeHighlighting()
             if (store instanceof NodeCollectionStore) {
-                // Allow nested collections to manipulate parent dropdown
+                // Allow nested collections to manipulate parent dropdown and modal
                 store.CreateDropdown = (x: number, y: number, collection: NodeCollectionStore): void => this.CreateDropdown(x,y,collection)
+                store.CreateInfoModal = (collection: NodeCollectionStore): void => this.CreateInfoModal(collection)
                 store.HideDropdown = (): void => this.HideDropdown()
             }
             this.Nodes.push(store)
@@ -136,9 +139,19 @@ export class NodeCollectionStore extends NodeStore {
     }
 
     @action
-    public CreateModal(x: number, y: number, collection: NodeCollectionStore, container: NodeCollectionStore, nodeType: NodeType) {
+    public CreateNodeCreationModal(x: number, y: number, collection: NodeCollectionStore, container: NodeCollectionStore, nodeType: NodeType) {
         const newModal = new NodeCreationModalStore(x, y, collection, container, nodeType);
         this.CurrentModal = newModal
+    }
+
+    @action
+    public CreateInfoModal(collection: NodeCollectionStore) {
+        if (this.isTopLevel) {
+            this.CurrentModal = new CollectionInfoModalStore(collection, this);
+        } else {
+            // nested collections should always create modals on their top-most parent
+            throw new Error("Modals should only be created on top-level stores")
+        }
     }
 
     @action

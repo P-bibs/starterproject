@@ -1,16 +1,16 @@
 import { observable } from "mobx";
 import { FormItemInfo, NodeType, NodeEditInfo, NodeTypeToNodeClass } from "./FormItemInfo"
 import { NodeCollectionStore } from "../stores/NodeCollectionStore";
+import { ModalStore } from "../stores/ModalStore"
 import React = require("react");
 
 
-export class NodeCreationModalStore {
+export class NodeCreationModalStore extends ModalStore{
     constructor(x: number, y: number, collection: NodeCollectionStore, container: NodeCollectionStore, nodeType: NodeType) {
+        super(collection, container);
         this.X = x;
         this.Y = y;
         this.NodeType = nodeType
-        this.Collection = collection
-        this.Container = container;
         this.inputs = NodeEditInfo[nodeType]
 
         this.inputs.forEach((input) => {
@@ -23,10 +23,6 @@ export class NodeCreationModalStore {
     readonly Y: number;
 
     readonly NodeType: NodeType;
-
-    readonly Collection: NodeCollectionStore;
-    
-    readonly Container: NodeCollectionStore;
 
     public inputs: FormItemInfo[];
 
