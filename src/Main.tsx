@@ -1,14 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import "./Main.scss";
-import { NodeCollectionStore } from './stores/NodeCollectionStore';
-import { StaticTextNodeStore } from './stores/StaticTextNodeStore';
-import { VideoNodeStore } from './stores/VideoNodeStore';
-import { WebsiteNodeStore } from './stores/WebsiteNodeStore';
-import { ImageNodeStore } from './stores/ImageNodeStore';
-import { TextEditorNodeStore } from './stores/TextEditorNodeStore';
+import { NodeCollectionStore } from './stores/nodes/NodeCollectionStore';
+import { StaticTextNodeStore } from './stores/nodes/StaticTextNodeStore';
+import { VideoNodeStore } from './stores/nodes/VideoNodeStore';
+import { WebsiteNodeStore } from './stores/nodes/WebsiteNodeStore';
+import { ImageNodeStore } from './stores/nodes/ImageNodeStore';
+import { TextEditorNodeStore } from './stores/nodes/TextEditorNodeStore';
 import { WorkspaceView } from './views/workspace/WorkspaceView';
-import { WorkspaceStore } from './stores/WorkspaceStore';
+import { WorkspaceStore } from './stores/workspace/WorkspaceStore';
 
 
 const mainNodeCollection = new NodeCollectionStore({X: 0, Y: 0, isTopLevel: true, GetParentScale: () => 1 });

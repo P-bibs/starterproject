@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 import { FormItemInfo, NodeType, NodeEditInfo, NodeTypeToNodeClass } from "./FormItemInfo"
-import { NodeCollectionStore } from "../stores/NodeCollectionStore";
-import { ModalStore } from "../stores/ModalStore"
+import { NodeCollectionStore } from "../nodes/NodeCollectionStore";
+import { ModalStore } from "./ModalStore"
 import React = require("react");
 
 

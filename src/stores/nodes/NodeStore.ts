@@ -1,5 +1,5 @@
 import { computed, observable, action } from "mobx";
-import { Utils } from "../Utils";
+import { Utils } from "../../Utils";
 
 export class NodeStore {
 

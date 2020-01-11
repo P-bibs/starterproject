@@ -1,6 +1,6 @@
 import React = require("react");
-import "./NodeContainer.scss"
-import { NodeLinkStore } from "../../stores/NodeLinkStore";
+import "../../styles/interface_components/NodeLink.scss"
+import { NodeLinkStore } from "../../stores/interface_components/NodeLinkStore";
 import { observer } from "mobx-react";
 
 interface IProps {

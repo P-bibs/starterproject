@@ -1,8 +1,7 @@
 import { observer } from "mobx-react";
-import { NodeStore } from "../../stores/NodeStore";
-import "./NodeView.scss";
+import { NodeStore } from "../../stores/nodes/NodeStore";
+import "../../styles/interface_components/TopBar.scss";
 import React = require("react");
-import { computed } from "mobx";
 
 interface IProps {
     store: NodeStore;

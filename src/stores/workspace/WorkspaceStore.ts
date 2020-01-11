@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
-import { NodeStore } from "./NodeStore";
-import { NodeCollectionStore } from "./NodeCollectionStore";
+import { NodeStore } from "../nodes/NodeStore";
+import { NodeCollectionStore } from "../nodes/NodeCollectionStore";
 
 
 export class WorkspaceStore extends NodeStore {

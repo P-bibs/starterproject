@@ -1,11 +1,11 @@
 import { computed, observable, action } from "mobx";
 import { NodeStore } from "./NodeStore";
-import { NodeLinkStore } from "./NodeLinkStore";
-import { NodeType } from "../node_creation/FormItemInfo"
-import { ModalStore } from "./ModalStore";
-import { NodeCreationDropdownStore } from "../node_creation/NodeCreationDropdownStore";
-import { NodeCreationModalStore } from "../node_creation/NodeCreationModalStore";
-import { CollectionInfoModalStore } from "./CollectionInfoModalStore";
+import { NodeLinkStore } from "../interface_components/NodeLinkStore";
+import { NodeType } from "../interface_components/FormItemInfo"
+import { ModalStore } from "../interface_components/ModalStore";
+import { NodeCreationDropdownStore } from "../interface_components/NodeCreationDropdownStore";
+import { NodeCreationModalStore } from "../interface_components/NodeCreationModalStore";
+import { CollectionInfoModalStore } from "../interface_components/CollectionInfoModalStore";
 
 
 export class NodeCollectionStore extends NodeStore {

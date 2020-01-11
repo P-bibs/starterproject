@@ -1,10 +1,10 @@
 import { observer } from "mobx-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { TextEditorNodeStore } from "../../stores/TextEditorNodeStore";
-import "./NodeView.scss";
-import { TopBar } from "./TopBar";
-import { ResizeCorner } from "./ResizeCorner";
+import { TextEditorNodeStore } from "../../stores/nodes/TextEditorNodeStore";
+import "../../styles/nodes/NodeView.scss";
+import { TopBar } from "../interface_components/TopBar";
+import { ResizeCorner } from "../interface_components/ResizeCorner";
 import React = require("react");
 
 interface IProps {

@@ -1,28 +1,28 @@
 import { observer } from "mobx-react";
-import { NodeCollectionStore } from "../../stores/NodeCollectionStore";
-import { NodeLinkView } from "./NodeLinkView";
+import { NodeCollectionStore } from "../../stores/nodes/NodeCollectionStore";
+import { NodeLinkView } from "../interface_components/NodeLinkView";
 
-import { StaticTextNodeStore } from "../../stores/StaticTextNodeStore";
-import { WebsiteNodeStore } from "../../stores/WebsiteNodeStore";
-import { VideoNodeStore } from "../../stores/VideoNodeStore";
-import { ImageNodeStore } from "../../stores/ImageNodeStore";
-import { TextEditorNodeStore } from "../../stores/TextEditorNodeStore";
-import { NodeCreationModalStore } from "../../node_creation/NodeCreationModalStore";
-import { CollectionInfoModalStore } from "../../stores/CollectionInfoModalStore";
+import { StaticTextNodeStore } from "../../stores/nodes/StaticTextNodeStore";
+import { WebsiteNodeStore } from "../../stores/nodes/WebsiteNodeStore";
+import { VideoNodeStore } from "../../stores/nodes/VideoNodeStore";
+import { ImageNodeStore } from "../../stores/nodes/ImageNodeStore";
+import { TextEditorNodeStore } from "../../stores/nodes/TextEditorNodeStore";
+import { NodeCreationModalStore } from "../../stores/interface_components/NodeCreationModalStore";
+import { CollectionInfoModalStore } from "../../stores/interface_components/CollectionInfoModalStore";
 
-import { TextNodeView } from "../nodes/TextNodeView";
-import { VideoNodeView } from "../nodes/VideoNodeView";
-import { WebsiteNodeView } from "../nodes/WebsiteNodeView";
-import { ImageNodeView } from "../nodes/ImageNodeView";
-import { TextEditorNodeView } from "../nodes/TextEditorNodeView";
-import { NodeCreationDropdownView } from "../../node_creation/NodeCreationDropdownView";
-import { NodeCreationModalView } from "../../node_creation/NodeCreationModalView";
-import { CollectionInfoModalView } from "./CollectionInfoModalView"
+import { TextNodeView } from "./TextNodeView";
+import { VideoNodeView } from "./VideoNodeView";
+import { WebsiteNodeView } from "./WebsiteNodeView";
+import { ImageNodeView } from "./ImageNodeView";
+import { TextEditorNodeView } from "./TextEditorNodeView";
+import { NodeCreationDropdownView } from "../interface_components/NodeCreationDropdownView";
+import { NodeCreationModalView } from "../interface_components/NodeCreationModalView";
+import { CollectionInfoModalView } from "../interface_components/CollectionInfoModalView"
 
-import { TopBar } from "../nodes/TopBar"
-import { ResizeCorner } from "../nodes/ResizeCorner"
-import "./NodeContainer.scss"
-import "../nodes/NodeView.scss"
+import { TopBar } from "../interface_components/TopBar";
+import { ResizeCorner } from "../interface_components/ResizeCorner";
+import "../../styles/nodes/NodeContainer.scss"
+import "../../styles/nodes/NodeView.scss"
 import React = require("react");
 
 interface IProps {

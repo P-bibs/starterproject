@@ -1,16 +1,16 @@
 import { observer } from "mobx-react";
-import { CollectionInfoModalStore } from "../../stores/CollectionInfoModalStore"
+import { CollectionInfoModalStore } from "../../stores/interface_components/CollectionInfoModalStore"
 
-import { StaticTextNodeStore } from "../../stores/StaticTextNodeStore";
-import { WebsiteNodeStore } from "../../stores/WebsiteNodeStore";
-import { VideoNodeStore } from "../../stores/VideoNodeStore";
-import { ImageNodeStore } from "../../stores/ImageNodeStore";
-import { TextEditorNodeStore } from "../../stores/TextEditorNodeStore";
-import { NodeCollectionStore } from "../../stores/NodeCollectionStore"
+import { StaticTextNodeStore } from "../../stores/nodes/StaticTextNodeStore";
+import { WebsiteNodeStore } from "../../stores/nodes/WebsiteNodeStore";
+import { VideoNodeStore } from "../../stores/nodes/VideoNodeStore";
+import { ImageNodeStore } from "../../stores/nodes/ImageNodeStore";
+import { TextEditorNodeStore } from "../../stores/nodes/TextEditorNodeStore";
+import { NodeCollectionStore } from "../../stores/nodes/NodeCollectionStore"
+import { NodeStore } from "../../stores/nodes/NodeStore";
 
-import "./CollectionInfoModal.scss"
+import "../../styles/interface_components/CollectionInfo.scss"
 import React = require("react");
-import { NodeStore } from "../../stores/NodeStore";
 
 interface IProps {
     store: CollectionInfoModalStore

@@ -1,5 +1,5 @@
-import { NodeCollectionStore } from "../stores/NodeCollectionStore";
-import { ModalStore } from "../stores/ModalStore"
+import { NodeCollectionStore } from "../nodes/NodeCollectionStore";
+import { ModalStore } from "./ModalStore"
 
 export class CollectionInfoModalStore extends ModalStore{
     constructor(collection: NodeCollectionStore, container: NodeCollectionStore) {

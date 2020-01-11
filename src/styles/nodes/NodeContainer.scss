@@ -1,18 +1,3 @@
-.node-link {
-    transform-origin: 0 0;
-    background: black;
-    position: absolute;
-    height: 3px;
-    // Add padding to make node-link easier to click
-    padding: 5px;
-    background-clip: content-box;
-
-    &.highlighted {
-        background: red;
-        background-clip: content-box;
-    }
-}
-
 .freeformcanvas-container {
     position: relative;
     top: 0;

@@ -1,0 +1,12 @@
+.corner {
+    margin-right: 0px;
+    margin-left: calc(100% - 20px);
+
+    // CSS hack for bottom-right triangle
+    width: 0;
+    height: 0;
+    border-bottom: 20px solid black;
+    border-left: 20px solid transparent;
+
+    cursor: nwse-resize;
+}

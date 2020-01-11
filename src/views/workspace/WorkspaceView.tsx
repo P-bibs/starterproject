@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
-import { WorkspaceStore } from "../../stores/WorkspaceStore"
-import { NodeContainer } from "../freeformcanvas/NodeContainer"
-import "./Workspace.scss"
+import { WorkspaceStore } from "../../stores/workspace/WorkspaceStore"
+import { NodeContainer } from "../nodes/NodeContainer"
+import "../../styles/workspace/Workspace.scss"
 import React = require("react");
 
 interface IProps {

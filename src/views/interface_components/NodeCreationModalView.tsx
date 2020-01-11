@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
-import "./NodeCreation.scss"
-import { NodeCreationModalStore } from "./NodeCreationModalStore"
-import { FormInputType } from "./FormItemInfo"
+import "../../styles/interface_components/NodeCreation.scss"
+import { NodeCreationModalStore } from "../../stores/interface_components/NodeCreationModalStore"
+import { FormInputType } from "../../stores/interface_components/FormItemInfo"
 import React = require("react");
 
 interface IProps {

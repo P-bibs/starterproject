@@ -1,9 +1,9 @@
 import { observer } from "mobx-react";
-import { VideoNodeStore } from "../../stores/VideoNodeStore";
-import "./NodeView.scss";
-import { TopBar } from "./TopBar";
-import { ResizeCorner } from "./ResizeCorner";
-import "./VideoNodeView.scss";
+import { VideoNodeStore } from "../../stores/nodes/VideoNodeStore";
+import "../../styles/nodes/NodeView.scss";
+import "../../styles/nodes/VideoNodeView.scss";
+import { TopBar } from "../interface_components/TopBar";
+import { ResizeCorner } from "../interface_components/ResizeCorner";
 import React = require("react");
 
 interface IProps {

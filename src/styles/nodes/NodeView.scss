@@ -13,23 +13,6 @@
         outline: 3px solid rgb(255, 255, 0);
     }
 
-    .top {
-        background: #232323;
-        height: 20px;
-        cursor: move;
-        text-align: end;
-
-        .top-btn {
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .highlight {
-            color: yellow;
-        }
-    }
-
     .content {
         padding: 0px 20px 0px 20px;
         height: calc(100% - 30px);
@@ -52,18 +35,5 @@
         margin: 0px 20px 0px 20px;
         border: 2px solid white;
         box-sizing: border-box;
-    }
-
-    .corner {
-        margin-right: 0px;
-        margin-left: calc(100% - 20px);
-
-        // CSS hack for bottom-right triangle
-        width: 0;
-        height: 0;
-        border-bottom: 20px solid black;
-        border-left: 20px solid transparent;
-
-        cursor: nwse-resize;
     }
 }

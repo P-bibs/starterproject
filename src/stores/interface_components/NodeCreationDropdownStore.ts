@@ -1,8 +1,7 @@
 import { computed } from "mobx";
-import "./NodeCreation.scss"
-import { Utils } from "../Utils"
+import { Utils } from "../../Utils"
 import { NodeType } from "./FormItemInfo"
-import { NodeCollectionStore } from "../stores/NodeCollectionStore";
+import { NodeCollectionStore } from "../nodes/NodeCollectionStore";
 
 export class NodeCreationDropdownStore {
     constructor(x: number, y: number, collection: NodeCollectionStore, container: NodeCollectionStore) {

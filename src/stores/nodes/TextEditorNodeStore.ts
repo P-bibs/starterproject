@@ -1,6 +1,5 @@
-import { observable, computed, action } from "mobx";
+import { observable, action } from "mobx";
 import { NodeStore } from "./NodeStore";
-import * as ReactQuill from 'react-quill';
 
 export class TextEditorNodeStore extends NodeStore {
 

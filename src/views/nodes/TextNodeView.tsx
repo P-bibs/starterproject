@@ -1,8 +1,8 @@
 import { observer } from "mobx-react";
-import { StaticTextNodeStore } from "../../stores/StaticTextNodeStore";
-import "./NodeView.scss";
-import { TopBar } from "./TopBar";
-import { ResizeCorner } from "./ResizeCorner";
+import { StaticTextNodeStore } from "../../stores/nodes/StaticTextNodeStore";
+import "../../styles/nodes/NodeView.scss";
+import { TopBar } from "../interface_components/TopBar";
+import { ResizeCorner } from "../interface_components/ResizeCorner";
 import React = require("react");
 
 interface IProps {

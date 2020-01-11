@@ -1,9 +1,9 @@
-import { StaticTextNodeStore } from "../stores/StaticTextNodeStore";
-import { ImageNodeStore } from "../stores/ImageNodeStore";
-import { VideoNodeStore } from "../stores/VideoNodeStore";
-import { WebsiteNodeStore } from "../stores/WebsiteNodeStore";
-import { TextEditorNodeStore } from "../stores/TextEditorNodeStore";
-import { NodeCollectionStore } from "../stores/NodeCollectionStore";
+import { StaticTextNodeStore } from "../nodes/StaticTextNodeStore";
+import { ImageNodeStore } from "../nodes/ImageNodeStore";
+import { VideoNodeStore } from "../nodes/VideoNodeStore";
+import { WebsiteNodeStore } from "../nodes/WebsiteNodeStore";
+import { TextEditorNodeStore } from "../nodes/TextEditorNodeStore";
+import { NodeCollectionStore } from "../nodes/NodeCollectionStore";
 
 type Class_t = new (...args: any[]) => any;
 

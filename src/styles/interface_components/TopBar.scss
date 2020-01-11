@@ -1,0 +1,16 @@
+.top {
+    background: #232323;
+    height: 20px;
+    cursor: move;
+    text-align: end;
+
+    .top-btn {
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .highlight {
+        color: yellow;
+    }
+}
