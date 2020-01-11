@@ -1,0 +1,48 @@
+.workspace {
+
+    .tab-bar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+
+        height: 40px;
+
+        background-color: grey;
+
+        .tab {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            
+            height: 100%;
+            box-sizing: border-box;
+            padding: 5px 10px;
+            margin: 0px 5px;
+            border-radius: 10px 10px 0px 0px;
+            background-color: rgb(184, 184, 184);
+
+            &.active-tab {
+                background-color: rgb(214, 214, 214);
+            }
+
+            .tab-title {
+                display: inline;
+                padding-right: 10px;
+            }
+
+            .delete-btn {
+                color: black;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+
+        .new-btn {
+            color: black;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+}

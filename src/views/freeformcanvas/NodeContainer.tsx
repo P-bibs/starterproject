@@ -49,7 +49,10 @@ export class NodeContainer extends React.Component<IProps> {
         e.preventDefault();
         this._isPointerDown = false;
         if (this._distancePanned < 3) {
-            this.props.store.CreateDropdown(e.pageX, e.pageY, this.props.store)
+            // Account for 40px workspace bar at top of page
+            let adjustedX = e.pageX
+            let adjustedY = e.pageY - 40
+            this.props.store.CreateDropdown(adjustedX, adjustedY, this.props.store)
         }
         document.removeEventListener("pointermove", this.onPointerMove);
         document.removeEventListener("pointerup", this.onPointerUp);
