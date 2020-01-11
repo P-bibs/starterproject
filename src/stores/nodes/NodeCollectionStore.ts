@@ -191,7 +191,6 @@ export class NodeCollectionStore extends NodeStore {
             // TODO: fix zooming for nested collections
             // this.ViewX += offsetX
             // this.ViewY += offsetY
-            console.log(offsetX)
         }
     }
 
