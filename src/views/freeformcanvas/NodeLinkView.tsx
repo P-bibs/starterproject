@@ -21,6 +21,7 @@ export class NodeLinkView extends React.Component<IProps> {
                     width: length,
                     transform: ("translate(" + xPos + "px," + yPos + "px) rotate(" + rotation + "rad)")}}
                 onClick={ this.props.store.Destroy }
+                onPointerDown={ (e) => e.stopPropagation() }
                 onMouseEnter={ this.props.store.Highlight.bind(this.props.store)}
                 onMouseLeave={ this.props.store.Highlight.bind(this.props.store)}>
             </div>
