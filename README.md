@@ -1,4 +1,4 @@
-# Dash Starter Project
+# Dash Starter Project Readme
 
 ## Canvas Controls
 
@@ -28,7 +28,7 @@
 * Drag a node by its top bar to move it.
 * Drag the bottom right corner of a node to resize it.
 * Click the 'x' button to delete a node.
-* Click the [LINK ICON] of one node and then another to link two nodes
+* Click the ![link icon](https://paulbiberstein.me/resources/link-icon.png) of one node and then another to link two nodes
 
 ## Node Links
 * Two linked nodes have a line connecting them.
@@ -37,7 +37,7 @@
 * Nodes may only be linked to other nodes in the same collection.
 
 ## Other Collection Views
-* Click the [INFO ICON] button in the top left of a collection to see a list of all the nodes in the collection and their titles.
+* Click the ![info icon](https://paulbiberstein.me/resources/info-icon.png) button in the top left of a collection to see a list of all the nodes in the collection and their titles.
 
 ## Additional Top-Level Collections
 * Use the tabs at the top to create, switch between, and delete different top-level collections.
