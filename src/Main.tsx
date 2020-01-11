@@ -15,7 +15,7 @@ const mainNodeCollection = new NodeCollectionStore({X: 0, Y: 0, isTopLevel: true
 const mainWorkspace = new WorkspaceStore({ Collections: [mainNodeCollection]})
 ReactDOM.render((
     <div>
-        <h1>Dash Web</h1>
+        <h1 className="dash-title">Dash Web</h1>
         <WorkspaceView store={mainWorkspace} />
     </div>), document.getElementById('root'));
 

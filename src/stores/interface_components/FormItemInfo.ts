@@ -4,6 +4,7 @@ import { VideoNodeStore } from "../nodes/VideoNodeStore";
 import { WebsiteNodeStore } from "../nodes/WebsiteNodeStore";
 import { TextEditorNodeStore } from "../nodes/TextEditorNodeStore";
 import { NodeCollectionStore } from "../nodes/NodeCollectionStore";
+import { MarkdownNodeStore } from "../nodes/MarkdownNodeStore";
 
 type Class_t = new (...args: any[]) => any;
 
@@ -30,6 +31,7 @@ export enum NodeType {
     WebsiteNode,
     NodeCollection,
     TextEditorNode,
+    MarkdownNode
 }
 
 export function NodeTypeToNodeClass(nodeType: NodeType): Class_t {
@@ -45,6 +47,8 @@ export function NodeTypeToNodeClass(nodeType: NodeType): Class_t {
         return TextEditorNodeStore
     } else if (nodeType == NodeType.NodeCollection) {
         return NodeCollectionStore
+    } else if (nodeType == NodeType.MarkdownNode) {
+        return MarkdownNodeStore
     }
 }
 
@@ -69,4 +73,8 @@ export const NodeEditInfo: { [key in NodeType]: FormItemInfo[]} = {
         new FormItemInfo({ Title: "Title", Type: FormInputType.Text, Name: "Title" }),
     ],
     [NodeType.NodeCollection]: [],
+    [NodeType.MarkdownNode]: [
+        new FormItemInfo({ Title: "Title", Type: FormInputType.Text, Name: "Title" }),
+        new FormItemInfo({ Title: "Markdown", Type: FormInputType.TextArea, Name: "Markdown" }),
+    ],
 }

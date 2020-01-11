@@ -27,7 +27,8 @@ export class NodeCreationDropdownStore {
         "Website Node": NodeType.WebsiteNode,
         "Text Editor Node": NodeType.TextEditorNode,
         "Node Collection": NodeType.NodeCollection,
-        "PDF Node": NodeType.WebsiteNode
+        "PDF Node": NodeType.WebsiteNode,
+        "Markdown Node": NodeType.MarkdownNode
     }
 
     public readonly OptionKeys: { [key: string]: string } = {
@@ -38,6 +39,7 @@ export class NodeCreationDropdownStore {
         "Text Editor Node": Utils.GenerateGuid(),
         "Node Collection": Utils.GenerateGuid(),
         "PDF Node": Utils.GenerateGuid(),
+        "Markdown Node": Utils.GenerateGuid(),
     }
 
     @computed

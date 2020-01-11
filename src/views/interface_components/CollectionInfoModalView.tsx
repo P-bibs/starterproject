@@ -8,6 +8,7 @@ import { ImageNodeStore } from "../../stores/nodes/ImageNodeStore";
 import { TextEditorNodeStore } from "../../stores/nodes/TextEditorNodeStore";
 import { NodeCollectionStore } from "../../stores/nodes/NodeCollectionStore"
 import { NodeStore } from "../../stores/nodes/NodeStore";
+import { MarkdownNodeStore } from "../../stores/nodes/MarkdownNodeStore";
 
 import "../../styles/interface_components/CollectionInfo.scss"
 import React = require("react");
@@ -25,7 +26,8 @@ export class CollectionInfoModalView extends React.Component<IProps> {
         } else if (nodeStore instanceof WebsiteNodeStore) { return "Website Node"
         } else if (nodeStore instanceof ImageNodeStore) { return "Image Node"
         } else if (nodeStore instanceof NodeCollectionStore) { return "Node Collection"
-        } else if (nodeStore instanceof TextEditorNodeStore) { return "Text Editor Node" }
+        } else if (nodeStore instanceof TextEditorNodeStore) { return "Text Editor Node"
+        } else if (nodeStore instanceof MarkdownNodeStore) { return "Markdown Node" }
     }
 
     render() {

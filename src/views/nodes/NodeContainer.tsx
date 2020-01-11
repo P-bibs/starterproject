@@ -9,6 +9,7 @@ import { ImageNodeStore } from "../../stores/nodes/ImageNodeStore";
 import { TextEditorNodeStore } from "../../stores/nodes/TextEditorNodeStore";
 import { NodeCreationModalStore } from "../../stores/interface_components/NodeCreationModalStore";
 import { CollectionInfoModalStore } from "../../stores/interface_components/CollectionInfoModalStore";
+import { MarkdownNodeStore } from "../../stores/nodes/MarkdownNodeStore";
 
 import { TextNodeView } from "./TextNodeView";
 import { VideoNodeView } from "./VideoNodeView";
@@ -18,6 +19,7 @@ import { TextEditorNodeView } from "./TextEditorNodeView";
 import { NodeCreationDropdownView } from "../interface_components/NodeCreationDropdownView";
 import { NodeCreationModalView } from "../interface_components/NodeCreationModalView";
 import { CollectionInfoModalView } from "../interface_components/CollectionInfoModalView"
+import { MarkdownNodeView } from "./MarkdownNodeView";
 
 import { TopBar } from "../interface_components/TopBar";
 import { ResizeCorner } from "../interface_components/ResizeCorner";
@@ -96,6 +98,8 @@ export class NodeContainer extends React.Component<IProps> {
                     return (<NodeContainer key={nodeStore.Id} store={nodeStore as NodeCollectionStore} />)
                 } else if (nodeStore instanceof TextEditorNodeStore) {
                     return (<TextEditorNodeView key={nodeStore.Id} store={nodeStore as TextEditorNodeStore} />)
+                } else if (nodeStore instanceof MarkdownNodeStore) {
+                    return (<MarkdownNodeView key={nodeStore.Id} store={nodeStore as MarkdownNodeStore} />)
                 }
             })}
         </div>
