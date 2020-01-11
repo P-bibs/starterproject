@@ -33,6 +33,10 @@ module.exports = {
           loader: "sass-loader"
         }
       ]
+    },
+    {
+      test: /\.txt|md$/i,
+      loader: "raw-loader"
     }]
   },
   plugins: [
